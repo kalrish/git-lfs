@@ -1,0 +1,70 @@
+---
+
+
+AWSTemplateFormatVersion: 2010-09-09
+
+
+Description: 'git LFS: DNS'
+
+
+Parameters:
+
+   ApiId:
+      Description: API Gateway API ID.
+      Type: String
+
+   CertificateArn:
+      Description: ARN of the certificate validating the git LFS endpoint domain.
+      Type: String
+
+   GitLfsDomainName:
+      Description: Domain name of git LFS API endpoint.
+      Type: String
+
+   HostedZoneId:
+      Description: ID of the Route 53 hosted zone in which to create DNS records.
+      Type: AWS::Route53::HostedZone::Id
+
+
+Resources:
+
+   Record:
+      DependsOn:
+         - Mapping
+      Type: AWS::Route53::RecordSet
+      Properties:
+         AliasTarget:
+            DNSName:
+               Fn::GetAtt:
+                  - ApiDomainName
+                  - RegionalDomainName
+            HostedZoneId:
+               Fn::GetAtt:
+                  - ApiDomainName
+                  - RegionalHostedZoneId
+         Comment: git LFS
+         HostedZoneId:
+            Ref: HostedZoneId
+         Name:
+            Ref: GitLfsDomainName
+         Type: A
+
+   ApiDomainName:
+      Type: AWS::ApiGatewayV2::DomainName
+      Properties:
+         DomainName:
+            Ref: GitLfsDomainName
+         DomainNameConfigurations:
+            -
+               CertificateArn:
+                  Ref: CertificateArn
+               EndpointType: REGIONAL
+
+   Mapping:
+      Type: AWS::ApiGatewayV2::ApiMapping
+      Properties:
+         ApiId:
+            Ref: ApiId
+         DomainName:
+            Ref: ApiDomainName
+         Stage: $default

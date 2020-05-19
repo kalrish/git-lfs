@@ -1,0 +1,65 @@
+---
+
+
+AWSTemplateFormatVersion: 2010-09-09
+
+
+Description: 'git LFS: API'
+
+
+Parameters:
+
+   FunctionName:
+      Description: Name of the Lambda function to call.
+      Type: String
+
+
+Resources:
+
+#   Role:
+#      Type: AWS::IAM::Role
+#      Properties:
+#         AssumeRolePolicyDocument:
+#            Version: 2012-10-17
+#            Statement:
+#               -
+#                  Principal:
+#                     Service: apigateway.amazonaws.com
+#                  Action:
+#                     - sts:AssumeRole
+#                  Effect: Allow
+#         Policies:
+#            -
+#               PolicyName: management
+#               PolicyDocument:
+#                  Version: 2012-10-17
+#                  Statement:
+#                     -
+#                        Action:
+#                           - lambda:InvokeFunction
+#                        Resource:
+#                           -
+#                              Fn::Sub: arn:${AWS::Partition}:sns:${AWS::Region}:${AWS::AccountId}:*
+#                        Effect: Allow
+
+   Api:
+      Type: AWS::ApiGatewayV2::Api
+      Properties:
+         #BasePath: ignore
+#         CredentialsArn:
+#            Fn::GetAtt:
+#               - Role
+#               - Arn
+         Description: git LFS handler
+         Name: git-lfs
+         ProtocolType: HTTP
+         Target:
+            Fn::Sub: arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:${FunctionName}/invocations
+
+
+Outputs:
+
+   ApiId:
+      Description: ID of the API.
+      Value:
+         Ref: Api

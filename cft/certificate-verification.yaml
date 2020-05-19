@@ -1,0 +1,72 @@
+---
+
+
+AWSTemplateFormatVersion: 2010-09-09
+
+
+Description: 'git LFS: SSL certificate verification'
+
+
+Metadata:
+
+   AWS::CloudFormation::Interface:
+      ParameterLabels:
+         GitLfsDomainName:
+            default: Domain name
+         HostedZoneId:
+            default: Hosted zone
+         Name:
+            default: Name
+         Target:
+            default: Target
+
+      ParameterGroups:
+         -
+            Label: Route 53
+            Parameters:
+               - HostedZoneId
+         -
+            Label: Git LFS
+            Parameters:
+               - GitLfsDomainName
+         -
+            Label: ACM
+            Parameters:
+               - Name
+               - Target
+
+
+Parameters:
+
+   GitLfsDomainName:
+      Description: Domain name of git LFS API endpoint.
+      Type: String
+
+   HostedZoneId:
+      Description: ID of the Route 53 hosted zone in which to create DNS records.
+      Type: AWS::Route53::HostedZone::Id
+
+   Name:
+      Description: DNS record name provided by ACM.
+      Type: String
+
+   Target:
+      Description: Target provided by ACM.
+      Type: String
+
+
+Resources:
+
+   Record:
+      Type: AWS::Route53::RecordSet
+      Properties:
+         HostedZoneId:
+            Ref: HostedZoneId
+         Name:
+            Fn::Sub: ${Name}.${GitLfsDomainName}
+         Comment: 'Verification: ACM'
+         Type: CNAME
+         ResourceRecords:
+            -
+               Ref: Target
+         TTL: '172800'

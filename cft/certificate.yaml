@@ -1,0 +1,36 @@
+---
+
+
+AWSTemplateFormatVersion: 2010-09-09
+
+
+Description: 'git LFS: SSL certificate'
+
+
+Parameters:
+
+   GitLfsDomainName:
+      Description: Domain name of git LFS API endpoint.
+      Type: String
+
+
+Resources:
+
+   Certificate:
+      Type: AWS::CertificateManager::Certificate
+      Properties:
+         DomainName:
+            Ref: GitLfsDomainName
+         ValidationMethod: DNS
+         Tags:
+            -
+               Key: Name
+               Value: git-lfs
+
+
+Outputs:
+
+   CertificateArn:
+      Description: ARN of the certificate.
+      Value:
+         Ref: Certificate
