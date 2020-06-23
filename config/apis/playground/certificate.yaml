@@ -1,0 +1,11 @@
+---
+
+template_path: glawit/certificate.yaml
+
+stack_tags:
+   Purpose: git-lfs
+   repository: git-lfs-playground
+
+parameters:
+   DomainName: playground.lfs.git.djsp.eu
+   HostedZoneId: {{ hosted_zone_id }}

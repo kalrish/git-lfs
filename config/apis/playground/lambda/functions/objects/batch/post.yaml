@@ -1,0 +1,17 @@
+---
+
+template_path: glawit/function.yaml
+
+stack_tags:
+   Purpose: git-lfs
+   repository: git-lfs-playground
+
+parameters:
+   GitHubOwner: {{ github_owner }}
+   GitHubRepo: {{ github_repo }}
+   HandlerFunction: post
+   HandlerModule: objects.batch
+   Policies:
+      - !stack_output apis/playground/store.yaml::ReadPolicyArn
+      - !stack_output apis/playground/store.yaml::WritePolicyArn
+   PythonVersion: '{{ python_version }}'

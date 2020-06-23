@@ -1,0 +1,13 @@
+---
+
+template_path: glawit/route.yaml
+
+stack_tags:
+   Purpose: git-lfs
+   repository: git-lfs-playground
+
+parameters:
+   ApiId: !stack_output apis/playground/api.yaml::ApiId
+   HttpMethod: POST
+   LambdaArn: !stack_output apis/playground/lambda/functions/verify/post.yaml::FunctionArn
+   RouteKey: /verify

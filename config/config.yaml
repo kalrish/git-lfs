@@ -1,0 +1,9 @@
+---
+
+project_code: git-lfs
+region: eu-central-1
+
+base_domain: lfs.git.djsp.eu
+certificate_arn: arn:aws:acm:eu-central-1:659664769788:certificate/c99f6f81-6ed1-4655-accb-6877f8e361c6
+hosted_zone_id: Z33D4CP00DWMQ2
+lambda_deployment_bucket: cf-templates-1eelshurnh905-eu-central-1

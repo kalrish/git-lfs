@@ -1,0 +1,7 @@
+---
+
+template_path: glawit/api.yaml
+
+stack_tags:
+   Purpose: git-lfs
+   repository: git-lfs-playground

@@ -1,0 +1,11 @@
+---
+
+template_path: user.yaml
+
+stack_tags:
+   Purpose: git-lfs
+
+parameters:
+   EmailAddress: david@djsp.eu
+   UserPoolId: !stack_output apis/music/userpool.yaml::Id
+   Username: djsp

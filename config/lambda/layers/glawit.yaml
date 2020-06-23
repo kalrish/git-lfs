@@ -1,0 +1,24 @@
+---
+
+hooks:
+   before_launch:
+      - !cmd >
+         sh -- package.sh 3.8
+      - !cmd >
+         sh
+         --
+         lambda/deploy_layer.sh
+         {{ lambda_deployment_bucket }}
+         lambda/verify
+         post
+
+template_path: glawit/layer.yaml
+
+stack_tags:
+   Purpose: git-lfs
+
+parameters:
+   DeploymentBucket: {{ lambda_deployment_bucket }}
+   DeploymentObjectKey: !file_contents lambda/layers/gql.txt
+   PythonVersions:
+      - python3.8

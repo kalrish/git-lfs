@@ -1,0 +1,7 @@
+---
+
+template_path: glawit/bucket.yaml
+
+stack_tags:
+   Purpose: git-lfs
+   repository: music

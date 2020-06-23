@@ -1,0 +1,16 @@
+---
+
+template_path: glawit/function.yaml
+
+stack_tags:
+   Purpose: git-lfs
+   repository: git-lfs-playground
+
+parameters:
+   GitHubOwner: {{ github_owner }}
+   GitHubRepo: {{ github_repo }}
+   HandlerFunction: get
+   HandlerModule: locks
+   Policies:
+      - !stack_output apis/playground/locktable.yaml::LockManagementPolicyArn
+   PythonVersion: '{{ python_version }}'

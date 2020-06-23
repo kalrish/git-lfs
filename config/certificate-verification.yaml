@@ -1,0 +1,12 @@
+---
+
+template_path: certificate-verification.yaml
+
+stack_tags:
+   Purpose: git-lfs
+
+parameters:
+   GitLfsDomainName: lfs.git.djsp.eu
+   HostedZoneId: {{ hosted_zone_id }}
+   Name: _be2a20a9bafde997ca58a27d3d332a4e
+   Target: _943e3c5b9e83fd9ec04a069e815d4826.auiqqraehs.acm-validations.aws.

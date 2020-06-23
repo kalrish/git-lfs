@@ -1,0 +1,7 @@
+---
+
+template_path: glawit/lock_table.yaml
+
+stack_tags:
+   Purpose: git-lfs
+   repository: git-lfs-playground

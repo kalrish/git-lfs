@@ -1,0 +1,11 @@
+---
+
+template_path: glawit/stage.yaml
+
+stack_tags:
+   Purpose: git-lfs
+   repository: music
+
+parameters:
+   ApiId: !stack_output apis/music/api.yaml::ApiId
+   StageName: prod

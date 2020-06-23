@@ -1,0 +1,6 @@
+---
+
+template_path: glawit/userpool.yaml
+
+stack_tags:
+   Purpose: git-lfs
