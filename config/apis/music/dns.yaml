@@ -8,7 +8,7 @@ stack_tags:
 
 parameters:
    ApiId: !stack_output apis/music/api.yaml::ApiId
-   CertificateArn: {{ certificate_arn }}
-   GitLfsDomainName: music.{{ base_domain }}
+   CertificateArn: !stack_output apis/music/certificate.yaml::CertificateArn
+   DomainName: music.{{ base_domain }}
    HostedZoneId: {{ hosted_zone_id }}
    StageName: !stack_output apis/music/stage.yaml::Name

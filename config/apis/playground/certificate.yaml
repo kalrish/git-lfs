@@ -7,5 +7,5 @@ stack_tags:
    repository: git-lfs-playground
 
 parameters:
-   DomainName: playground.lfs.git.djsp.eu
+   DomainName: playground.{{ base_domain }}
    HostedZoneId: {{ hosted_zone_id }}

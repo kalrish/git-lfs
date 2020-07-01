@@ -1,16 +1,14 @@
 ---
 
-hooks:
-   before_launch:
-      - !cmd >
-         sh -- package.sh 3.8
-      - !cmd >
-         sh
-         --
-         lambda/deploy_layer.sh
-         {{ lambda_deployment_bucket }}
-         lambda/verify
-         post
+#hooks:
+#   before_launch:
+#      - !cmd >
+#         sh
+#         --
+#         package.sh
+#         {{ lambda_deployment_bucket }}
+#         3.7
+#         3.8
 
 template_path: glawit/layer.yaml
 
@@ -19,6 +17,7 @@ stack_tags:
 
 parameters:
    DeploymentBucket: {{ lambda_deployment_bucket }}
-   DeploymentObjectKey: !file_contents lambda/layers/gql.txt
+   DeploymentObjectKey: !file_contents glawit_deployment_package/object_key
    PythonVersions:
+      - python3.7
       - python3.8
