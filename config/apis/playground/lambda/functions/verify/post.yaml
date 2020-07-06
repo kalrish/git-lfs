@@ -11,8 +11,11 @@ parameters:
    GitHubRepo: {{ github_repo }}
    HandlerFunction: post
    HandlerModule: verify
+   LargeFileStorageClass: STANDARD
+   LargeFileStoreBucketName: !stack_output apis/playground/store.yaml::BucketName
    Layers:
       - !stack_output lambda/layers/glawit.yaml::LatestVersionArn
+   LockTable: !stack_output apis/playground/locktable.yaml::TableName
    Policies:
       - !stack_output apis/playground/store.yaml::ReadPolicyArn
    PythonVersion: '{{ python_version }}'

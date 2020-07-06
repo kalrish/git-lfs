@@ -9,5 +9,5 @@ stack_tags:
 parameters:
    ApiId: !stack_output apis/playground/api.yaml::ApiId
    HttpMethod: POST
-   LambdaArn: !stack_output apis/playground/lambda/functions/locks/verify/post.yaml::FunctionArn
-   RouteKey: /locks/{id}/unlock
+   LambdaArn: !stack_output apis/playground/lambda/functions/locks/id/unlock/post.yaml::FunctionArn
+   RouteKey: /locks/{lock_id}/unlock

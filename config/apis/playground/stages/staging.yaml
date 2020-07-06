@@ -8,6 +8,4 @@ stack_tags:
 
 parameters:
    ApiId: !stack_output apis/playground/api.yaml::ApiId
-   LargeFileStorageClass: STANDARD
-   LargeFileStoreBucketName: !stack_output apis/playground/store.yaml::BucketName
    StageName: staging
