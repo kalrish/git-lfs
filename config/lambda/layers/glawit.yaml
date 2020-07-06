@@ -17,7 +17,6 @@ stack_tags:
 
 parameters:
    DeploymentBucket: {{ lambda_deployment_bucket }}
-   DeploymentObjectKey: !file_contents glawit_deployment_package/object_key
+   DeploymentObjectKey: !file_contents .glawit_deployment_package/object_key
    PythonVersions:
       - python3.7
-      - python3.8
