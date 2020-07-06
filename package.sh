@@ -1,13 +1,24 @@
-deployment_bucket="$1"
-
 output_directory=.glawit_deployment_package
 
-git_commit_id="$(
+deployment_bucket="$1"
+
+shift
+
+git_commit_id_core="$(
 	git \
 		rev-parse \
-		HEAD:glawit \
+		HEAD:glawit/core \
 		#
 )"
+
+git_commit_id_interface="$(
+	git \
+		rev-parse \
+		HEAD:glawit/interface-apigw \
+		#
+)"
+
+version_id="${git_commit_id_core}_${git_commit_id_interface}"
 
 rm \
 	--force \
@@ -21,20 +32,38 @@ mkdir \
 	"${output_directory}" \
 	#
 
-shift
+cd glawit
 
-sh \
-	-- \
-	glawit/interface-apigw/package.sh \
-	"${output_directory}" \
-	"$@" \
+for package in core interface-apigw
+do
+	cd \
+		"${package}" \
+		#
+
+	for python_version in "$@"
+	do
+		sh \
+			-- \
+			../interface-apigw/package.sh \
+			"${python_version}" \
+			"../../${output_directory}" \
+			#
+	done
+
+	cd \
+		.. \
+		#
+done
+
+cd \
+	.. \
 	#
 
 cd \
 	"${output_directory}" \
 	#
 
-deployment_package_file_path="${git_commit_id}.zip"
+deployment_package_file_path="${version_id}.zip"
 
 rm \
 	--force \
@@ -51,7 +80,7 @@ zip \
 	python \
 	#
 
-deployment_object_key="glawit/${git_commit_id}.zip"
+deployment_object_key="glawit/${version_id}.zip"
 
 mime_type="$(
 	file \
