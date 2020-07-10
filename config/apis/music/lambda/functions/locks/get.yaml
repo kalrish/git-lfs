@@ -1,0 +1,21 @@
+---
+
+template_path: glawit/function.yaml
+
+stack_tags:
+   Purpose: git-lfs
+   repository: music
+
+parameters:
+   GitHubOwner: {{ github_owner }}
+   GitHubRepo: {{ github_repo }}
+   HandlerFunction: get
+   HandlerModule: locks
+   LargeFileStorageClass: {{ large_file_storage_class }}
+   LargeFileStoreBucketName: !stack_output apis/music/store.yaml::BucketName
+   Layers:
+      - !stack_output lambda/layers/glawit.yaml::LatestVersionArn
+   LockTable: !stack_output apis/music/locktable.yaml::TableName
+   Policies:
+      - !stack_output apis/music/locktable.yaml::LockLookupPolicyArn
+   PythonVersion: '{{ python_version }}'

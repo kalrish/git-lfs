@@ -8,4 +8,4 @@ stack_tags:
 
 parameters:
    ApiId: !stack_output apis/music/api.yaml::ApiId
-   StageName: prod
+   StageName: stable

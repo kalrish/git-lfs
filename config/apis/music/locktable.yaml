@@ -1,6 +1,6 @@
 ---
 
-template_path: glawit/bucket.yaml
+template_path: glawit/locktable.yaml
 
 stack_tags:
    Purpose: git-lfs

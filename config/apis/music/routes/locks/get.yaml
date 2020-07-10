@@ -1,0 +1,13 @@
+---
+
+template_path: glawit/route.yaml
+
+stack_tags:
+   Purpose: git-lfs
+   repository: music
+
+parameters:
+   ApiId: !stack_output apis/music/api.yaml::ApiId
+   HttpMethod: GET
+   LambdaArn: !stack_output apis/music/lambda/functions/locks/get.yaml::FunctionArn
+   RouteKey: /locks

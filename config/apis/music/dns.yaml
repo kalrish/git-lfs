@@ -11,4 +11,4 @@ parameters:
    CertificateArn: !stack_output apis/music/certificate.yaml::CertificateArn
    DomainName: music.{{ base_domain }}
    HostedZoneId: {{ hosted_zone_id }}
-   StageName: !stack_output apis/music/stage.yaml::Name
+   StageName: !stack_output apis/music/stages/stable.yaml::Name
