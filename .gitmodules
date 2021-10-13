@@ -4,7 +4,7 @@
 	branch = develop
 [submodule "glawit/core"]
 	path = glawit/core
-	url = ssh://github/glawit/core.git
+	url = https://github.com/glawit/core.git
 [submodule "glawit/interface-apigw"]
 	path = glawit/interface-apigw
 	url = ssh://github/glawit/interface-apigw.git
