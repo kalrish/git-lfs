@@ -1,6 +1,6 @@
 [submodule "templates/glawit"]
 	path = templates/glawit
-	url = ssh://github/glawit/cloudformation.git
+	url = https://github.com/glawit/cloudformation.git
 	branch = develop
 [submodule "glawit/core"]
 	path = glawit/core
