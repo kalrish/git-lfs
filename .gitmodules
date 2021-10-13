@@ -7,4 +7,4 @@
 	url = https://github.com/glawit/core.git
 [submodule "glawit/interface-apigw"]
 	path = glawit/interface-apigw
-	url = ssh://github/glawit/interface-apigw.git
+	url = https://github.com/glawit/interface-apigw.git
