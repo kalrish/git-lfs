@@ -1,9 +1,0 @@
----
-
-template_path: certificate.yaml
-
-stack_tags:
-   Purpose: git-lfs
-
-parameters:
-   GitLfsDomainName: '*.lfs.git.djsp.eu'
