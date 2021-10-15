@@ -3,5 +3,5 @@
 template_path: glawit/store.yaml
 
 stack_tags:
-   Purpose: git-lfs
+   Purpose: backup
    repository: music

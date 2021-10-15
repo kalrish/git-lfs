@@ -3,7 +3,7 @@
 template_path: glawit/stage.yaml
 
 stack_tags:
-   Purpose: git-lfs
+   Purpose: backup
    repository: music
 
 parameters:
